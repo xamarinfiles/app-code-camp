@@ -50,6 +50,8 @@ namespace CodeCampApp.PageModels
 
         public abstract PageType PageType { get; }
 
+        public virtual bool ShowBackButton => false;
+
         #endregion
 
         #region Data Commands

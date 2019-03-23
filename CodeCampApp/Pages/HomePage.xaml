@@ -2,25 +2,24 @@
   encoding="utf-8"?>
 <?xaml-comp compile="true" ?>
 
-<!--xmlns:controls="clr-namespace:CodeCampApp.Controls"-->
-<!--xmlns:styles="clr-namespace:CodeCampApp.Styles"-->
 <pages:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:controls="clr-namespace:CodeCampApp.Controls"
   xmlns:pages="clr-namespace:CodeCampApp.Pages"
   xmlns:pageModels="clr-namespace:CodeCampApp.PageModels"
+  xmlns:styles="clr-namespace:CodeCampApp.Styles"
   x:Class="CodeCampApp.Pages.HomePage"
   x:TypeArguments="pageModels:HomePageModel">
   <ContentView>
     <Grid VerticalOptions="FillAndExpand">
       <Grid.RowDefinitions>
-        <!--<RowDefinition Height="{x:Static styles:Dimensions.PageHeaderRowHeight}" />-->
+        <RowDefinition Height="{x:Static styles:Dimensions.PageHeaderRowHeight}" />
         <RowDefinition Height="*" />
-        <!--<RowDefinition Height="{x:Static styles:Dimensions.FooterMenuRowHeight}" />-->
+        <RowDefinition Height="{x:Static styles:Dimensions.FooterMenuRowHeight}" />
       </Grid.RowDefinitions>
 
       <!-- Row 0: Header -->
-      <!--<controls:PageHeader Grid.Row="0"
-        ShowBackButton="True" />-->
+      <controls:PageHeader Grid.Row="0" />
 
       <!-- TEMP -->
       <Label Grid.Row="1"

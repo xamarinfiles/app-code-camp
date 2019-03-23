@@ -1,5 +1,6 @@
 ﻿using CodeCampApp.Navigation;
 using CodeCampApp.PageModels;
+using CodeCampApp.Styles;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using Xamarin.Forms;
@@ -29,12 +30,12 @@ namespace CodeCampApp.Pages
             // Use footer nav bar and menu page instead of default header nav bar
             NavigationPage.SetHasNavigationBar(this, false);
 
+            // Default page background color
+            BackgroundColor = Colors.PageBackground;
+
             // Move iOS layout under status bar
             if (Device.RuntimePlatform == Device.iOS)
                 On<iOS>().SetUseSafeArea(true);
-
-            // TODO // Default page background color
-            //BackgroundColor = Colors.PageBackground;
         }
 
         #endregion
