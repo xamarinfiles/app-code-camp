@@ -16,6 +16,8 @@
 
         #region Public
 
+        public string Message { get; set; }
+
         #endregion
 
         #region Interface

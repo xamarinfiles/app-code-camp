@@ -6,6 +6,7 @@ using static CodeCampApp.Data.Messaging.MessageType;
 
 namespace CodeCampApp.Data.Messaging
 {
+    // TODO Convert to static service instead of importing static members everywhere
     public static class MessageHandler
     {
         #region Enums
@@ -27,6 +28,9 @@ namespace CodeCampApp.Data.Messaging
             SubscribeToMessages<AnalyticsArgs>(Analytics);
             SubscribeToMessages<InformationArgs>(Information);
             SubscribeToMessages<WarningArgs>(Warning);
+
+            //SendErrorMessage(new Exception("TEST EXCEPTION"), true);
+            //SendWarningMessage("TEST WARNING");
         }
 
         #region Send Methods
@@ -42,12 +46,15 @@ namespace CodeCampApp.Data.Messaging
                     ShowStackTrace = showStackTrace
                 };
 
-                MessagingCenter.Send(Application.Current, Error.ToString(),
-                    errorArgs);
+                if (ErrorMessagingAvailable)
+                    MessagingCenter.Send(Application.Current, Error.ToString(),
+                        errorArgs);
+                else
+                    DebugWriteException(exception);
             }
-            catch (Exception ex)
+            catch (Exception sendException)
             {
-                DebugWriteException(ex);
+                DebugWriteException(sendException);
             }
         }
 
@@ -86,6 +93,12 @@ namespace CodeCampApp.Data.Messaging
 
         #region Private
 
+        private static bool AnalyticsMessagingAvailable { get; set; }
+        private static bool CrashMessagingAvailable { get; set; }
+        private static bool ErrorMessagingAvailable { get; set; }
+        private static bool InformationMessagingAvailable { get; set; }
+        private static bool WarningMessagingAvailable { get; set; }
+
         private static void SubscribeToMessages<TBaseArgs>(
             MessageType messageType) where TBaseArgs : BaseArgs
         {
@@ -119,6 +132,25 @@ namespace CodeCampApp.Data.Messaging
                 callback);
 
             DebugWriteValue($"{messageType.ToString()} messages", "Subscribed");
+
+            switch (messageType)
+            {
+                case Analytics:
+                    AnalyticsMessagingAvailable = true;
+                    break;
+                case Crash:
+                    CrashMessagingAvailable = true;
+                    break;
+                case Error:
+                    ErrorMessagingAvailable = true;
+                    break;
+                case Information:
+                    InformationMessagingAvailable = true;
+                    break;
+                case Warning:
+                    WarningMessagingAvailable = true;
+                    break;
+            }
         }
 
         private static void ProcessAnalyticsMessage(AnalyticsArgs analyticsArgs)
@@ -139,19 +171,18 @@ namespace CodeCampApp.Data.Messaging
         {
             DebugWriteException(errorArgs.Exception, errorArgs.ShowStackTrace);
 
-            // TODO
+            // TODO Send error to App Center
         }
 
         private static void ProcessInformationMessage(InformationArgs args)
         {
-            DebugWriteSubheader("INFORMATION MESSAGE");
+            DebugWriteInformation(args.Message);
 
             // TODO
         }
 
         private static void ProcessWarningMessage(WarningArgs args)
         {
-            DebugWriteSubheader("WARNING MESSAGE");
             DebugWriteWarning(args.Message);
 
             // TODO
