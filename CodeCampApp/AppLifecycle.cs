@@ -8,6 +8,8 @@ namespace CodeCampApp
     {
         public App()
         {
+            SetupServices();
+
             MainPage = new MainPage();
         }
 
