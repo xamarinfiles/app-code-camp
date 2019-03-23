@@ -1,6 +1,6 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using CodeCampApp.Data.Models;
+﻿using CodeCampApp.Data.Models;
 using CodeCampApp.Pages;
+using System.Diagnostics.CodeAnalysis;
 using static CodeCampApp.Data.Logging.OutputWindow;
 
 namespace CodeCampApp.PageModels
@@ -17,9 +17,11 @@ namespace CodeCampApp.PageModels
 
         #region Constructors
 
-        protected BasePageModel()
+        protected BasePageModel(NavigationState navState)
         {
-            DebugWriteHeader(PageTitle);
+            DebugWriteHeader(PageName);
+
+            NavState = navState;
         }
 
         #endregion
