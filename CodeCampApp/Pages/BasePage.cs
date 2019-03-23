@@ -66,7 +66,7 @@ namespace CodeCampApp.Pages
 
         protected override bool OnBackButtonPressed()
         {
-            // TODO PageModel.GoBackPageCommand.Execute(null);
+            PageModel.GoBackPageCommand.Execute(null);
 
             // TODO Add warning when trying to pop root page
             return true;

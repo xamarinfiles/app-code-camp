@@ -9,7 +9,7 @@
 
         #region Loading pages (before Home) < 10^2
 
-        Splash = 10,
+        //Splash = 10,
 
         // TODO Reserve low numbers for loading, instructions, settings selection, etc
 
@@ -17,31 +17,31 @@
 
         #region Top-level pages (off bottom menu) and their children >= 10^2 < 10^3
 
-        #region Home page (left button - root of top-level pages)
+        #region Home page (left nav button - root of top-level pages)
 
         Home = 100,
 
         #endregion
 
-        #region Agenda (center-left button)
+        #region Agenda (center-left nav button)
 
         Agenda = 200,
 
         #endregion
 
-        #region Timeslots (center button)
+        #region Timeslots (center nav button)
 
         Timeslots = 300,
 
         #endregion
 
-        #region Tracks (center-right button)
+        #region Tracks (center-right nav button)
 
         Tracks = 400,
 
         #endregion
 
-        #region Menu (right button - root of secondary pages)
+        #region Menu (right nav button - root of secondary pages)
 
         Menu = 500,
 

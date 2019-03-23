@@ -1,5 +1,4 @@
-﻿using CodeCampApp.Data.Models;
-using CodeCampApp.PageModels;
+﻿using CodeCampApp.PageModels;
 using System;
 using static CodeCampApp.Data.Messaging.MessageHandler;
 
@@ -33,9 +32,8 @@ namespace CodeCampApp.Pages
         {
             base.OnAppearing();
 
-            // DEL After PageModel navigation
-            BasePageModel.NavService.PushAsync(typeof(AgendaPageModel),
-                new NavigationState(NavigationState.AppSection.Agenda));
+            // DEL After add nav bar
+            PageModel.GoToAgendaPageCommand.Execute(null);
         }
 
         #endregion

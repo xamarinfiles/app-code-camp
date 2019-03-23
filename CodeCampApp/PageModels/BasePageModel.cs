@@ -1,12 +1,11 @@
 ﻿using CodeCampApp.Data.Models;
-using CodeCampApp.Navigation;
 using CodeCampApp.Pages;
 using System.Diagnostics.CodeAnalysis;
 using static CodeCampApp.Data.Logging.OutputWindow;
 
 namespace CodeCampApp.PageModels
 {
-    public abstract class BasePageModel
+    public abstract partial class BasePageModel
     {
         #region Enums
 
@@ -29,9 +28,6 @@ namespace CodeCampApp.PageModels
 
         #region Service Mappings
 
-        // TODO Make private
-        internal static INavigationService NavService => App.NavService;
-
         #endregion
 
         #region Data Properties
@@ -39,8 +35,6 @@ namespace CodeCampApp.PageModels
         #endregion
 
         #region Navigation Properties
-
-        public NavigationState NavState { get; set; }
 
         #endregion
 
