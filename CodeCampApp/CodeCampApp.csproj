@@ -10,7 +10,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="App.cs" />
+    <Compile Remove="App.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="App.xaml" />
   </ItemGroup>
 
   <ItemGroup>
