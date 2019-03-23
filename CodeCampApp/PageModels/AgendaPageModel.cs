@@ -1,12 +1,9 @@
 ﻿using CodeCampApp.Data.Models;
-using CodeCampApp.Navigation;
 using CodeCampApp.Pages;
-using System.Diagnostics.CodeAnalysis;
-using static CodeCampApp.Data.Logging.OutputWindow;
 
 namespace CodeCampApp.PageModels
 {
-    public abstract class BasePageModel
+    public class AgendaPageModel : BasePageModel
     {
         #region Enums
 
@@ -18,19 +15,13 @@ namespace CodeCampApp.PageModels
 
         #region Constructors
 
-        protected BasePageModel(NavigationState navState)
+        public AgendaPageModel(NavigationState navState) : base(navState)
         {
-            DebugWriteHeader(PageName);
-
-            NavState = navState;
         }
 
         #endregion
 
         #region Service Mappings
-
-        // TODO Make private
-        internal static INavigationService NavService => App.NavService;
 
         #endregion
 
@@ -40,21 +31,11 @@ namespace CodeCampApp.PageModels
 
         #region Navigation Properties
 
-        public NavigationState NavState { get; set; }
-
         #endregion
 
         #region State Properties
 
-        public bool PageIsWaiting { get; set; }
-
-        [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
-        public string PageName => PageType.ToString();
-
-        [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
-        public string PageTitle => PageType.PageTitle(NavState);
-
-        public abstract PageType PageType { get; }
+        public override PageType PageType => PageType.Agenda;
 
         #endregion
 

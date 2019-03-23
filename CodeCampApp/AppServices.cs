@@ -1,47 +1,37 @@
-﻿using Xamarin.Forms;
+﻿using CodeCampApp.Navigation;
+using Xamarin.Forms;
+using static CodeCampApp.Data.Messaging.MessageHandler;
 
 namespace CodeCampApp
 {
     public partial class App : Application
     {
-        #region Enums
-
-        #endregion
-
         #region Fields
 
         #endregion
 
         #region Public
 
-        public static void SetupServices()
+        private static void SetupServices()
         {
-            Data.Messaging.MessageHandler.SubscribeToMessages();
+            SubscribeToMessages();
 
-            //MessageHandler.SendErrorMessage(
-            //    new Exception("TEST EXCEPTION"), true);
-            //MessageHandler.SendWarningMessage("TEST WARNING");
+            NavService = new NavigationService(Assembly);
         }
 
         #endregion
 
-        #region Interface
+        #region Public Properties
 
         #endregion
 
-        #region Protected
+        #region Internal Services
 
-        #endregion
-
-        #region Internal
+        internal static INavigationService NavService { get; private set; }
 
         #endregion
 
         #region Private
-
-        #endregion
-
-        #region Nested Types
 
         #endregion
     }
