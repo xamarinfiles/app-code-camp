@@ -28,14 +28,6 @@ namespace CodeCampApp.Pages
 
         #region Protected Overrides
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-
-            // DEL After add nav bar
-            PageModel.GoToAgendaPageCommand.Execute(null);
-        }
-
         #endregion
 
         #region Bindable Properties

@@ -50,7 +50,9 @@ namespace CodeCampApp.PageModels
         #region GoBackPageCommand
 
         public Command GoBackPageCommand =>
-            new Command(async () => await NavService.PopAsync());
+            new Command(async () =>
+                await NavService.PopAsync()
+            );
 
         #endregion
 
@@ -59,57 +61,50 @@ namespace CodeCampApp.PageModels
         #region GoToHomePageCommand (left nav button)
 
         public Command GoToHomePageCommand =>
-            new Command(
-                async () =>
-                {
-                    await ExecuteGoToPageCommand(PageType.Home, AppSection.Home);
-                }
-            );
+            new Command(async () =>
+            {
+                await ExecuteGoToPageCommand(PageType.Home, AppSection.Home);
+            });
 
         #endregion
 
         #region GoToAgendaPageCommand (center-left nav button)
 
         public Command GoToAgendaPageCommand =>
-            new Command(
-                async () =>
-                {
-                    await ExecuteGoToPageCommand(PageType.Agenda, AppSection.Agenda);
-                }
-            );
+            new Command(async () =>
+            {
+                await ExecuteGoToPageCommand(PageType.Agenda, AppSection.Agenda);
+            });
 
         #endregion
 
         #region GoToTimeslotsPageCommand (center nav button)
 
         public Command GoToTimeslotsPageCommand =>
-            new Command(
-                async () =>
-                {
-                    await ExecuteGoToPageCommand(PageType.Timeslots, AppSection.Timeslots);
-                });
+            new Command(async () =>
+            {
+                await ExecuteGoToPageCommand(PageType.Timeslots, AppSection.Timeslots);
+            });
 
         #endregion
 
         #region GoToTracksPageCommand (center-right nav button)
 
         public Command GoToTracksPageCommand =>
-            new Command(
-                async () =>
-                {
-                    await ExecuteGoToPageCommand(PageType.Tracks, AppSection.Tracks);
-                });
+            new Command(async () =>
+            {
+                await ExecuteGoToPageCommand(PageType.Tracks, AppSection.Tracks);
+            });
 
         #endregion
 
         #region GoToMenuPageCommand (right nav button)
 
         public Command GoToMenuPageCommand =>
-            new Command(
-                async () =>
-                {
-                    await ExecuteGoToPageCommand(PageType.Menu, AppSection.Menu);
-                });
+            new Command(async () =>
+            {
+                await ExecuteGoToPageCommand(PageType.Menu, AppSection.Menu);
+            });
 
         #endregion
 
