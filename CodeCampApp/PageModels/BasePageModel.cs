@@ -22,6 +22,8 @@ namespace CodeCampApp.PageModels
             DebugWriteHeader(PageName);
 
             NavState = navState;
+
+            FooterNavItems = BuildNavigationMenu();
         }
 
         #endregion

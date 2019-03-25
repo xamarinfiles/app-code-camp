@@ -2,6 +2,6 @@
 {
     public static class Strings
     {
-        internal const string HomePageTitle = "Announcements";
+        internal const string HomePageTitle = "Orlando Code Camp 2019";
     }
 }

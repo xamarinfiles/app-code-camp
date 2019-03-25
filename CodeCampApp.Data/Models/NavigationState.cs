@@ -14,7 +14,7 @@ namespace CodeCampApp.Data.Models
             Agenda,
             Timeslots,
             Tracks,
-            Menu,
+            More,
             Modal
         }
 

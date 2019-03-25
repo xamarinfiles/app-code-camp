@@ -1,0 +1,23 @@
+﻿<?xml version="1.0"
+  encoding="utf-8"?>
+<?xaml-comp compile="true" ?>
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:controls="clr-namespace:CodeCampApp.Controls"
+  xmlns:styles="clr-namespace:CodeCampApp.Styles"
+  x:Class="CodeCampApp.Controls.FooterNavBar"
+  x:Name="This"
+  BackgroundColor="{x:Static styles:Colors.NavBarBackground}">
+  <ContentView.Content>
+    <StackLayout Orientation="Horizontal"
+      Spacing="0"
+      BindableLayout.ItemsSource="{Binding FooterNavItems}">
+      <BindableLayout.ItemTemplate>
+        <DataTemplate>
+          <controls:FooterNavButton HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+        </DataTemplate>
+      </BindableLayout.ItemTemplate>
+    </StackLayout>
+  </ContentView.Content>
+</ContentView>

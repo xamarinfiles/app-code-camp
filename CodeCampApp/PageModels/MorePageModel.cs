@@ -3,7 +3,7 @@ using CodeCampApp.Pages;
 
 namespace CodeCampApp.PageModels
 {
-    public class MenuPageModel : BasePageModel
+    public class MorePageModel : BasePageModel
     {
         #region Enums
 
@@ -15,7 +15,7 @@ namespace CodeCampApp.PageModels
 
         #region Constructors
 
-        public MenuPageModel(NavigationState navState) : base(navState)
+        public MorePageModel(NavigationState navState) : base(navState)
         {
         }
 
@@ -35,7 +35,7 @@ namespace CodeCampApp.PageModels
 
         #region State Properties
 
-        public override PageType PageType => PageType.Menu;
+        public override PageType PageType => PageType.More;
 
         #endregion
 
