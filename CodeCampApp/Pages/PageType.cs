@@ -4,8 +4,8 @@
     {
         // Divide pages into intro, primary, and secondary allows for quick calculations
         // Examples:
-        // PageType >= Home && <= Menu => top-level page on nav bar
-        // PageType > Menu => secondary page off one of pages on nav bar
+        // PageType >= Home && <= More => top-level page on nav bar
+        // PageType > More => secondary page off one of pages on nav bar
 
         #region Loading pages (before Home) < 10^2
 
@@ -41,15 +41,15 @@
 
         #endregion
 
-        #region Menu (right nav button - root of secondary pages)
+        #region More (right nav button - root of secondary pages)
 
-        Menu = 500,
-
-        #endregion
+        More = 500,
 
         #endregion
 
-        #region Secondary pages (off menu page) and their children >= 10^3
+        #endregion
+
+        #region Secondary pages (off more page) and their children >= 10^3
 
         Sponsors = 1000,
 

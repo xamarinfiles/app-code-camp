@@ -1,6 +1,7 @@
 ﻿using CodeCampApp.Data.Models;
 using System;
 using static CodeCampApp.Data.Messaging.MessageHandler;
+using static CodeCampApp.Resources.Strings;
 
 namespace CodeCampApp.Pages
 {
@@ -22,9 +23,13 @@ namespace CodeCampApp.Pages
 
             try
             {
-                // Override page title from PageType to make more user-friendly
+                // Override page title from PageType to make user-friendly or appropriate
                 switch (pageType)
                 {
+                    case PageType.Home:
+                        pageTitle = HomePageTitle;
+
+                        break;
                     default:
                         // Use PageType for default page title and navigation testing
                         pageTitle = pageType.ToString();
