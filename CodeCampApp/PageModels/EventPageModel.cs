@@ -2,13 +2,12 @@
 using CodeCampApp.Pages;
 using OrlandoCodeCampApi.Models.Responses;
 using System;
-using System.Collections.Generic;
 using Xamarin.Forms;
 using static CodeCampApp.Data.Messaging.MessageHandler;
 
 namespace CodeCampApp.PageModels
 {
-    public class HomePageModel : BasePageModel
+    public class EventPageModel : BasePageModel
     {
         #region Enums
 
@@ -20,9 +19,8 @@ namespace CodeCampApp.PageModels
 
         #region Constructors
 
-        public HomePageModel(NavigationState navState) : base(navState)
+        public EventPageModel(NavigationState navState) : base(navState)
         {
-            GetAnnouncementsCommand.Execute(null);
         }
 
         #endregion
@@ -32,7 +30,8 @@ namespace CodeCampApp.PageModels
         #endregion
 
         #region Data Properties
-        public IList<Announcement> Announcements { get; private set; }
+
+        public Event Event { get; private set; }
 
         #endregion
 
@@ -42,20 +41,20 @@ namespace CodeCampApp.PageModels
 
         #region State Properties
 
-        public override PageType PageType => PageType.Home;
+        public override PageType PageType => PageType.Event;
 
         #endregion
 
         #region Data Commands
 
-        #region GetAccouncementsCommand
+        #region GetEventCommand
 
-        public Command GetAnnouncementsCommand =>
+        public Command GetEventCommand =>
             new Command(async () =>
             {
                 try
                 {
-                    Announcements = await CodeCampService.GetAnnouncementsList();
+                    Event = await CodeCampService.GetActiveEvent();
                 }
                 catch (Exception exception)
                 {

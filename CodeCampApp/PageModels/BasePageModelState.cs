@@ -24,19 +24,9 @@ namespace CodeCampApp.PageModels
             NavState = navState;
 
             FooterNavItems = BuildNavigationMenu();
+
+            LoadCommonData();
         }
-
-        #endregion
-
-        #region Service Mappings
-
-        #endregion
-
-        #region Data Properties
-
-        #endregion
-
-        #region Navigation Properties
 
         #endregion
 
@@ -53,14 +43,6 @@ namespace CodeCampApp.PageModels
         public abstract PageType PageType { get; }
 
         public virtual bool ShowBackButton => false;
-
-        #endregion
-
-        #region Data Commands
-
-        #endregion
-
-        #region Navigation Commands
 
         #endregion
 
