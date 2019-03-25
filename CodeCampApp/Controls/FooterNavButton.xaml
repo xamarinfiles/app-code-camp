@@ -1,0 +1,41 @@
+﻿<?xml version="1.0"
+  encoding="utf-8"?>
+<?xaml-comp compile="true" ?>
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:controls="clr-namespace:CodeCampApp.Controls"
+  xmlns:styles="clr-namespace:CodeCampApp.Styles"
+  x:Class="CodeCampApp.Controls.FooterNavButton"
+  WidthRequest="{x:Static styles:Dimensions.NavButtonWidth}"
+  BackgroundColor="{Binding ButtonBackground}">
+  <Grid x:Name="ButtonLabelGrid"
+    RowSpacing="0">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="3*" />
+      <RowDefinition Height="2*" />
+    </Grid.RowDefinitions>
+
+    <BoxView Grid.Row="0"
+      Style="{x:Static styles:BoxViews.PageFooterSeparator}" />
+
+    <!-- TEMP Placeholder for SVG image -->
+    <BoxView x:Name="BoxView"
+      Grid.Row="0"
+      HorizontalOptions="Center"
+      VerticalOptions="Center"
+      BackgroundColor="Purple"
+      WidthRequest="{x:Static styles:Dimensions.NavButtonImageSize}"
+      HeightRequest="{x:Static styles:Dimensions.NavButtonImageSize}" />
+
+    <Label x:Name="Label"
+      Grid.Row="1"
+      Text="{Binding LabelText}"
+      Style="{Binding LabelStyle}" />
+
+    <Grid.GestureRecognizers>
+      <TapGestureRecognizer Command="{Binding NavigationCommand}"
+        CommandParameter="{Binding AppSection}" />
+    </Grid.GestureRecognizers>
+  </Grid>
+</ContentView>

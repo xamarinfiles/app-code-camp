@@ -8,8 +8,8 @@
   xmlns:pages="clr-namespace:CodeCampApp.Pages"
   xmlns:pageModels="clr-namespace:CodeCampApp.PageModels"
   xmlns:styles="clr-namespace:CodeCampApp.Styles"
-  x:Class="CodeCampApp.Pages.HomePage"
-  x:TypeArguments="pageModels:HomePageModel">
+  x:Class="CodeCampApp.Pages.TimeslotsPage"
+  x:TypeArguments="pageModels:TimeslotsPageModel">
   <ContentView>
     <Grid VerticalOptions="FillAndExpand">
       <Grid.RowDefinitions>

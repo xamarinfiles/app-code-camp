@@ -18,6 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="OrlandoCodeCampApi">
+      <HintPath>..\..\library-api-code-camp-orlando\OrlandoCodeCampApi\bin\Debug\netstandard2.0\OrlandoCodeCampApi.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

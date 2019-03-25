@@ -2,11 +2,15 @@
 using CodeCampApp.Navigation;
 using CodeCampApp.Pages;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using static CodeCampApp.Data.Logging.OutputWindow;
 using static CodeCampApp.Data.Messaging.MessageHandler;
 using static CodeCampApp.Data.Models.NavigationState;
+using static CodeCampApp.Data.Models.NavigationState.AppSection;
+using static CodeCampApp.Styles.Colors;
+using static CodeCampApp.Styles.Labels;
 
 namespace CodeCampApp.PageModels
 {
@@ -33,7 +37,9 @@ namespace CodeCampApp.PageModels
 
         #region Navigation Properties
 
-        public NavigationState NavState { get; set; }
+        public IList<FooterNavItem> FooterNavItems { get; }
+
+        public NavigationState NavState { get; }
 
         #endregion
 
@@ -53,6 +59,35 @@ namespace CodeCampApp.PageModels
             new Command(async () =>
                 await NavService.PopAsync()
             );
+
+        #endregion
+
+        #region GoToNavBarPageCommand
+
+        public Command<AppSection> GoToNavBarPageCommand =>
+            new Command<AppSection>(appSection =>
+            {
+                switch (appSection)
+                {
+                    case Home:
+                        GoToHomePageCommand.Execute(null);
+                        break;
+                    case Agenda:
+                        GoToAgendaPageCommand.Execute(null);
+                        break;
+                    case Timeslots:
+                        GoToTimeslotsPageCommand.Execute(null);
+                        break;
+                    case Tracks:
+                        GoToTracksPageCommand.Execute(null);
+                        break;
+                    case More:
+                        GoToMorePageCommand.Execute(null);
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(appSection), appSection, null);
+                }
+            });
 
         #endregion
 
@@ -98,12 +133,12 @@ namespace CodeCampApp.PageModels
 
         #endregion
 
-        #region GoToMenuPageCommand (right nav button)
+        #region GoToMorePageCommand (right nav button)
 
-        public Command GoToMenuPageCommand =>
+        public Command GoToMorePageCommand =>
             new Command(async () =>
             {
-                await ExecuteGoToPageCommand(PageType.Menu, AppSection.Menu);
+                await ExecuteGoToPageCommand(PageType.More, AppSection.More);
             });
 
         #endregion
@@ -126,8 +161,41 @@ namespace CodeCampApp.PageModels
 
         #region Private Methods
 
+        private IList<FooterNavItem> BuildNavigationMenu()
+        {
+            var footerNavItems = new List<FooterNavItem>();
+
+            AddFooterNavItem(Home, HomeButtonBackground);
+            AddFooterNavItem(Agenda, AgendaButtonBackground);
+            AddFooterNavItem(Timeslots, TimeslotsButtonBackground);
+            AddFooterNavItem(Tracks, TracksButtonBackground);
+            AddFooterNavItem(More, MoreButtonBackground);
+
+            return footerNavItems;
+
+            void AddFooterNavItem(AppSection appSection, Color selectedBackground)
+            {
+                var isSelected = appSection == NavState.AppSectionSelected;
+                var labelStyle = isSelected
+                    ? NavButtonSelectedTitle
+                    : NavButtonUnselectedTitle;
+                var navItem = new FooterNavItem
+                {
+                    AppSection = appSection,
+                    IsSelected = isSelected,
+                    LabelText = appSection.ToString(),
+                    LabelStyle = labelStyle,
+                    // TODO image
+                    ButtonBackground = isSelected ? selectedBackground : Color.Transparent,
+                    NavigationCommand = GoToNavBarPageCommand
+                };
+
+                footerNavItems.Add(navItem);
+            }
+        }
+
         private async Task ExecuteGoToPageCommand(PageType nextPage,
-            NavigationState.AppSection appSection)
+            AppSection appSection)
         {
             await ExecuteGoToPageCommand(nextPage, new NavigationState(appSection));
         }
@@ -170,12 +238,12 @@ namespace CodeCampApp.PageModels
                         await NavService.ReplaceRootAsync(
                             typeof(TracksPageModel), navState);
                         break;
-                    case PageType.Menu:
+                    case PageType.More:
                         await NavService.ReplaceRootAsync(
-                            typeof(MenuPageModel), navState);
+                            typeof(MorePageModel), navState);
                         break;
 
-                    // Secondary pages off Menu
+                    // Secondary pages off More
 
                     case PageType.Sponsors:
                         break;

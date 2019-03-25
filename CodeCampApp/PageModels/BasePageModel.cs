@@ -22,6 +22,8 @@ namespace CodeCampApp.PageModels
             DebugWriteHeader(PageName);
 
             NavState = navState;
+
+            FooterNavItems = BuildNavigationMenu();
         }
 
         #endregion
@@ -49,6 +51,8 @@ namespace CodeCampApp.PageModels
         public string PageTitle => PageType.PageTitle(NavState);
 
         public abstract PageType PageType { get; }
+
+        public virtual bool ShowBackButton => false;
 
         #endregion
 
