@@ -8,7 +8,6 @@ using Xamarin.Forms;
 using static CodeCampApp.Data.Logging.OutputWindow;
 using static CodeCampApp.Data.Messaging.MessageHandler;
 using static CodeCampApp.Data.Models.NavigationState;
-using static CodeCampApp.Data.Models.NavigationState.AppSection;
 using static CodeCampApp.Styles.Colors;
 using static CodeCampApp.Styles.Labels;
 
@@ -31,23 +30,11 @@ namespace CodeCampApp.PageModels
 
         #endregion
 
-        #region Data Properties
-
-        #endregion
-
         #region Navigation Properties
 
         public IList<FooterNavItem> FooterNavItems { get; }
 
         public NavigationState NavState { get; }
-
-        #endregion
-
-        #region State Properties
-
-        #endregion
-
-        #region Data Commands
 
         #endregion
 
@@ -69,19 +56,19 @@ namespace CodeCampApp.PageModels
             {
                 switch (appSection)
                 {
-                    case Home:
+                    case AppSection.Home:
                         GoToHomePageCommand.Execute(null);
                         break;
-                    case Agenda:
+                    case AppSection.Agenda:
                         GoToAgendaPageCommand.Execute(null);
                         break;
-                    case Timeslots:
+                    case AppSection.Timeslots:
                         GoToTimeslotsPageCommand.Execute(null);
                         break;
-                    case Tracks:
+                    case AppSection.Tracks:
                         GoToTracksPageCommand.Execute(null);
                         break;
-                    case More:
+                    case AppSection.More:
                         GoToMorePageCommand.Execute(null);
                         break;
                     default:
@@ -147,10 +134,6 @@ namespace CodeCampApp.PageModels
 
         #endregion
 
-        #region State Commands
-
-        #endregion
-
         #region Internal Methods
 
         #endregion
@@ -165,11 +148,11 @@ namespace CodeCampApp.PageModels
         {
             var footerNavItems = new List<FooterNavItem>();
 
-            AddFooterNavItem(Home, HomeButtonBackground);
-            AddFooterNavItem(Agenda, AgendaButtonBackground);
-            AddFooterNavItem(Timeslots, TimeslotsButtonBackground);
-            AddFooterNavItem(Tracks, TracksButtonBackground);
-            AddFooterNavItem(More, MoreButtonBackground);
+            AddFooterNavItem(AppSection.Home, HomeButtonBackground);
+            AddFooterNavItem(AppSection.Agenda, AgendaButtonBackground);
+            AddFooterNavItem(AppSection.Timeslots, TimeslotsButtonBackground);
+            AddFooterNavItem(AppSection.Tracks, TracksButtonBackground);
+            AddFooterNavItem(AppSection.More, MoreButtonBackground);
 
             return footerNavItems;
 

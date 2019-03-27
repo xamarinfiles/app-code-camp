@@ -3,12 +3,13 @@ using CodeCampApp.Pages;
 using OrlandoCodeCampApi.Models.Responses;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using static CodeCampApp.Data.Messaging.MessageHandler;
 
 namespace CodeCampApp.PageModels
 {
-    public class HomePageModel : BasePageModel
+    public class SponsorsPageModel : BasePageModel
     {
         #region Enums
 
@@ -20,9 +21,9 @@ namespace CodeCampApp.PageModels
 
         #region Constructors
 
-        public HomePageModel(NavigationState navState) : base(navState)
+        public SponsorsPageModel(NavigationState navState) : base(navState)
         {
-            GetAnnouncementsCommand.Execute(null);
+            GetSponsorsCommand.Execute(null);
         }
 
         #endregion
@@ -32,7 +33,10 @@ namespace CodeCampApp.PageModels
         #endregion
 
         #region Data Properties
-        public IList<Announcement> Announcements { get; private set; }
+
+        public IList<Sponsor> Sponsors {get; private set; }
+
+        public IList<SponsorLevel> SponsorLevels { get; private set; }
 
         #endregion
 
@@ -42,25 +46,32 @@ namespace CodeCampApp.PageModels
 
         #region State Properties
 
-        public override PageType PageType => PageType.Home;
+        public override PageType PageType => PageType.Sponsors;
 
         #endregion
 
         #region Data Commands
 
-        #region GetAccouncementsCommand
+        #region GetSponsorsCommand
 
-        public Command GetAnnouncementsCommand =>
+        private Command GetSponsorsCommand =>
             new Command(async () =>
             {
                 try
                 {
-                    Announcements = await CodeCampService.GetAnnouncementsList();
+                    var sponsorsTask = CodeCampService.GetSponsorsList();
+                    var sponsorLevelsTask  = CodeCampService.GetSponsorLevels();
+
+                    await Task.WhenAll(sponsorsTask, sponsorLevelsTask);
+
+                    Sponsors = await sponsorsTask;
+                    SponsorLevels = await sponsorLevelsTask;
                 }
                 catch (Exception exception)
                 {
                     SendErrorMessage(exception);
                 }
+
             });
 
         #endregion

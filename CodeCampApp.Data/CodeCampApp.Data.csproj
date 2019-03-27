@@ -9,18 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Api\" />
     <Folder Include="Reporting\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CodeCampApi.Orlando" Version="1.0.1" />
     <PackageReference Include="Xamarin.Forms" Version="3.6.0.264807" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="OrlandoCodeCampApi">
-      <HintPath>..\..\library-api-code-camp-orlando\OrlandoCodeCampApi\bin\Debug\netstandard2.0\OrlandoCodeCampApi.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>
